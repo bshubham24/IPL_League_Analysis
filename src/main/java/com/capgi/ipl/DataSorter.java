@@ -54,4 +54,15 @@ public class DataSorter {
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		return sortedRunsDataJson;
 	}
+
+	public String highestStrikeAndMaxAvg(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> strikeRateAndBoundaries = Comparator.comparing(bat -> ((Batting) bat).getAverage())
+				.thenComparing(bat -> ((Batting) bat).getStrikeRate());
+		List<Batting> sortedList = runsList.stream().sorted(strikeRateAndBoundaries).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+	}
 }

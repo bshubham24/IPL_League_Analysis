@@ -12,7 +12,7 @@ public class DataSorter {
 	public String highestBatAvg(List<Batting> runsList) throws IplLeagueAnalyserException {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
-		List<Batting> sortedList = runsList.stream().sorted(Comparator.comparing(code -> code.getAverage()))
+		List<Batting> sortedList = runsList.stream().sorted(Comparator.comparing(bat -> bat.getAverage()))
 				.collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
@@ -23,7 +23,7 @@ public class DataSorter {
 	public String highestStrikeRate(List<Batting> runsList) throws IplLeagueAnalyserException {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
-		List<Batting> sortedList = runsList.stream().sorted(Comparator.comparing(code -> code.getStrikeRate()))
+		List<Batting> sortedList = runsList.stream().sorted(Comparator.comparing(bat -> bat.getStrikeRate()))
 				.collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
@@ -35,12 +35,23 @@ public class DataSorter {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
 		List<Batting> sortedList = runsList.stream()
-				.sorted(Comparator.comparing(code -> code.getNoOfFours() + code.getNoOfSixes()))
+				.sorted(Comparator.comparing(bat -> bat.getNoOfFours() + bat.getNoOfSixes()))
 				.collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
-		System.out.println(sortedRunsDataJson);
 		return sortedRunsDataJson;
 
+	}
+
+	public String highestStrikeWithMaxBoundaries(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> strikeRateAndBoundaries = Comparator
+				.comparing(bat -> ((Batting) bat).getNoOfFours() + ((Batting) bat).getNoOfSixes())
+				.thenComparing(bat -> ((Batting) bat).getStrikeRate());
+		List<Batting> sortedList = runsList.stream().sorted(strikeRateAndBoundaries).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
 	}
 }

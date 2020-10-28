@@ -25,10 +25,13 @@ public class IplLeagueAnalyser {
 			return dataSorter.highestNoOfSixAndFours(iplDataList);
 		}
 		case "highestStrikeRateAndMaxBoundaries": {
-			return dataSorter.highestStrikeWithMaxBoundaries(iplDataList);
+			return dataSorter.highestStrikeRateWithMaxBoundaries(iplDataList);
 		}
 		case "highestStrikeRateAndMaxAverage": {
-			return dataSorter.highestStrikeAndMaxAvg(iplDataList);
+			return dataSorter.highestStrikeRateAndMaxAvg(iplDataList);
+		}
+		case "MaxRunsAndMaxAverage": {
+			return dataSorter.maxRunsAndMaxAvg(iplDataList);
 		}
 		default: {
 			System.out.println("Invalid choice!");

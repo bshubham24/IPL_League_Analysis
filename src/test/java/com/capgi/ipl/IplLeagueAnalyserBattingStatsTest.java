@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.capgi.csvbuilder.CsvException;
 import com.google.gson.Gson;
 
-public class IplLeagueAnalyserMostRunsTest {
+public class IplLeagueAnalyserBattingStatsTest {
 	public static final String BATTING_STATS_PATH = "F:\\Capgemini_training1\\java_eclipse\\IplLeagueAnalysis\\IPL2019FactsheetMostRuns.csv";
 	private IplLeagueAnalyser iplLeagueAnalyser;
 	List<Batting> battingStatsList;
@@ -65,7 +65,7 @@ public class IplLeagueAnalyserMostRunsTest {
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList,
-				"highestStrikeRateAndMaxAverage");
+				"highestStrikeRateAndMaxAvg");
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("MS Dhoni", battingCsv[0].getPlayer());
 	}
@@ -74,7 +74,7 @@ public class IplLeagueAnalyserMostRunsTest {
 	public void givenMostRunsDataShouldReturnMaxRunsAndBestAverage()
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
-		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "MaxRunsAndMaxAverage");
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "MaxRunsAndMaxAvg");
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("David Warner", battingCsv[0].getPlayer());
 	}

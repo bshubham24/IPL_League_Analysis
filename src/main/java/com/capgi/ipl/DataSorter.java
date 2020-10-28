@@ -19,4 +19,16 @@ public class DataSorter {
 		return sortedRunsDataJson;
 
 	}
+
+	public String highestStrikeRate(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		List<Batting> sortedList = runsList.stream().sorted(Comparator.comparing(code -> code.getStrikeRate()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		System.out.println(sortedRunsDataJson);
+		return sortedRunsDataJson;
+
+	}
 }

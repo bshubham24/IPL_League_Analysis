@@ -46,9 +46,8 @@ public class DataSorter {
 	public String highestStrikeRateWithMaxBoundaries(List<Batting> runsList) throws IplLeagueAnalyserException {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
-		final Comparator<Object> strikeRateAndBoundaries = Comparator
-				.comparing(bat -> ((Batting) bat).getNoOfFours() + ((Batting) bat).getNoOfSixes())
-				.thenComparing(bat -> ((Batting) bat).getStrikeRate());
+		final Comparator<Object> strikeRateAndBoundaries = Comparator.comparing(bat -> ((Batting) bat).getStrikeRate())
+				.thenComparing(bat -> ((Batting) bat).getNoOfFours() + ((Batting) bat).getNoOfSixes());
 		List<Batting> sortedList = runsList.stream().sorted(strikeRateAndBoundaries).collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
@@ -104,6 +103,18 @@ public class DataSorter {
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
 		List<Bowling> sortedList = bowlList.stream().sorted(Comparator.comparing(bowl -> bowl.getEconomy()))
 				.collect(Collectors.toList());
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+
+	}
+
+	public String bestBowlingStrikeRateWith4wAnd5w(List<Bowling> bowlList) throws IplLeagueAnalyserException {
+		if (bowlList == null || bowlList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> strikeRateAnd4N5WicketHauls = Comparator
+				.comparing(bowl -> ((Bowling) bowl).getStrikeRate())
+				.thenComparing(bowl -> ((Bowling) bowl).getFourWickets() + ((Bowling) bowl).getFiveWickets());
+		List<Bowling> sortedList = bowlList.stream().sorted(strikeRateAnd4N5WicketHauls).collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		return sortedRunsDataJson;

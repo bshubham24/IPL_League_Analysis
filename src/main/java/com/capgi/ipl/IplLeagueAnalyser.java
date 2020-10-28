@@ -18,6 +18,9 @@ public class IplLeagueAnalyser {
 		case "battingAvg": {
 			return dataSorter.highestBatAvg(iplDataList);
 		}
+		case "strikeRate": {
+			return dataSorter.highestStrikeRate(iplDataList);
+		}
 		}
 		return category;
 	}

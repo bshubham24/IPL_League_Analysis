@@ -31,4 +31,13 @@ public class IplLeagueAnalyserMostRunsTest {
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("MS Dhoni", battingCsv[0].getPlayer());
 	}
+
+	@Test
+	public void givenMostRunsDataShouldReturnHighestStrikeRateCricketer()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "strikeRate");
+		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
+		assertEquals("Ishant Sharma", battingCsv[0].getPlayer());
+	}
 }

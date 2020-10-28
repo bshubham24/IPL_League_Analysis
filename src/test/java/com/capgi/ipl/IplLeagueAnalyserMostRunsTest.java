@@ -51,7 +51,7 @@ public class IplLeagueAnalyserMostRunsTest {
 	}
 
 	@Test
-	public void givenMostRunsDataShouldReturnHighestStrikeRateAndMaxBoundaries()
+	public void givenMostRunsDataShouldReturnHighestStrikeRateAndMaxBoundariesCricketer()
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList,
@@ -61,12 +61,21 @@ public class IplLeagueAnalyserMostRunsTest {
 	}
 
 	@Test
-	public void givenMostRunsDataShouldReturnHighestStrikeRateAndMaxAverage()
+	public void givenMostRunsDataShouldReturnHighestAverageAndBestStrikeRateCricketer()
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList,
 				"highestStrikeRateAndMaxAverage");
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("MS Dhoni", battingCsv[0].getPlayer());
+	}
+
+	@Test
+	public void givenMostRunsDataShouldReturnMaxRunsAndBestAverage()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "MaxRunsAndMaxAverage");
+		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
+		assertEquals("David Warner", battingCsv[0].getPlayer());
 	}
 }

@@ -43,7 +43,7 @@ public class DataSorter {
 
 	}
 
-	public String highestStrikeWithMaxBoundaries(List<Batting> runsList) throws IplLeagueAnalyserException {
+	public String highestStrikeRateWithMaxBoundaries(List<Batting> runsList) throws IplLeagueAnalyserException {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
 		final Comparator<Object> strikeRateAndBoundaries = Comparator
@@ -55,12 +55,23 @@ public class DataSorter {
 		return sortedRunsDataJson;
 	}
 
-	public String highestStrikeAndMaxAvg(List<Batting> runsList) throws IplLeagueAnalyserException {
+	public String highestStrikeRateAndMaxAvg(List<Batting> runsList) throws IplLeagueAnalyserException {
 		if (runsList == null || runsList.size() == 0)
 			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
-		final Comparator<Object> strikeRateAndBoundaries = Comparator.comparing(bat -> ((Batting) bat).getAverage())
+		final Comparator<Object> strikeRateAndavg = Comparator.comparing(bat -> ((Batting) bat).getAverage())
 				.thenComparing(bat -> ((Batting) bat).getStrikeRate());
-		List<Batting> sortedList = runsList.stream().sorted(strikeRateAndBoundaries).collect(Collectors.toList());
+		List<Batting> sortedList = runsList.stream().sorted(strikeRateAndavg).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+	}
+
+	public String maxRunsAndMaxAvg(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> runsAndAvg = Comparator.comparing(bat -> ((Batting) bat).getRuns())
+				.thenComparing(bat -> ((Batting) bat).getAverage());
+		List<Batting> sortedList = runsList.stream().sorted(runsAndAvg).collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		return sortedRunsDataJson;

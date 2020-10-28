@@ -47,6 +47,16 @@ public class IplLeagueAnalyserBowlingStatsTest {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(bowlingStatsList, "bestBowlingEconomy");
 		Bowling[] bowlingCsv = new Gson().fromJson(sortedRunsData, Bowling[].class);
-		assertEquals("Ben Cutting", bowlingCsv[0].getPlayer());
+		assertEquals("Shivam Dube", bowlingCsv[0].getPlayer());
+	}
+
+	@Test
+	public void givenBowlingStatsShouldReturnHighestBowlingStrikeRateCricketerAndMax4wAnd5w()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(bowlingStatsList,
+				"bestBowlingStrikeRateWith4wAnd5w");
+		Bowling[] bowlingCsv = new Gson().fromJson(sortedRunsData, Bowling[].class);
+		assertEquals("Krishnappa Gowtham", bowlingCsv[0].getPlayer());
 	}
 }

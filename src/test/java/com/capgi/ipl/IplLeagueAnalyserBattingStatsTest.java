@@ -57,7 +57,7 @@ public class IplLeagueAnalyserBattingStatsTest {
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList,
 				"highestStrikeRateAndMaxBoundaries");
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
-		assertEquals("Andre Russell", battingCsv[0].getPlayer());
+		assertEquals("Ishant Sharma", battingCsv[0].getPlayer());
 	}
 
 	@Test

@@ -48,6 +48,9 @@ public class IplLeagueAnalyser {
 		case "bestBowlingAvgAndStrikeRate": {
 			return dataSorter.bestBowlingAvgAndStrikeRate(iplDataList);
 		}
+		case "highestWktsAndBestBowlingAvg": {
+			return dataSorter.highestWktsAndBestBowlingAvg(iplDataList);
+		}
 		default: {
 			System.out.println("Invalid choice!");
 			return null;

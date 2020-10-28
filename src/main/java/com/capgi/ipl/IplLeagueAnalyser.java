@@ -45,6 +45,9 @@ public class IplLeagueAnalyser {
 		case "bestBowlingStrikeRateWith4wAnd5w": {
 			return dataSorter.bestBowlingStrikeRateWith4wAnd5w(iplDataList);
 		}
+		case "bestBowlingAvgAndStrikeRate": {
+			return dataSorter.bestBowlingAvgAndStrikeRate(iplDataList);
+		}
 		default: {
 			System.out.println("Invalid choice!");
 			return null;

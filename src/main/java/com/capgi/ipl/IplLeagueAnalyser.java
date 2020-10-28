@@ -21,6 +21,9 @@ public class IplLeagueAnalyser {
 		case "strikeRate": {
 			return dataSorter.highestStrikeRate(iplDataList);
 		}
+		case "sixAndFours": {
+			return dataSorter.highestNoOfSixAndFours(iplDataList);
+		}
 		}
 		return category;
 	}

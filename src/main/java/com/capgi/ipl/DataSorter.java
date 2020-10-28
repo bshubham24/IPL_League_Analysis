@@ -27,6 +27,18 @@ public class DataSorter {
 				.collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+
+	}
+
+	public String highestNoOfSixAndFours(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		List<Batting> sortedList = runsList.stream()
+				.sorted(Comparator.comparing(code -> code.getNoOfFours() + code.getNoOfSixes()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		System.out.println(sortedRunsDataJson);
 		return sortedRunsDataJson;
 

@@ -99,4 +99,15 @@ public class DataSorter {
 
 	}
 
+	public String bestBowlingEconomy(List<Bowling> bowlList) throws IplLeagueAnalyserException {
+		if (bowlList == null || bowlList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		List<Bowling> sortedList = bowlList.stream().sorted(Comparator.comparing(bowl -> bowl.getEconomy()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+
+	}
+
 }

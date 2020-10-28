@@ -88,4 +88,15 @@ public class DataSorter {
 
 	}
 
+	public String bestBowlingStrikeRate(List<Bowling> bowlList) throws IplLeagueAnalyserException {
+		if (bowlList == null || bowlList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		List<Bowling> sortedList = bowlList.stream().sorted(Comparator.comparing(bowl -> bowl.getStrikeRate()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+
+	}
+
 }

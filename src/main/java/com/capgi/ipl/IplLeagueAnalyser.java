@@ -27,6 +27,9 @@ public class IplLeagueAnalyser {
 		case "highestStrikeRateAndMaxBoundaries": {
 			return dataSorter.highestStrikeWithMaxBoundaries(iplDataList);
 		}
+		case "highestStrikeRateAndMaxAverage": {
+			return dataSorter.highestStrikeAndMaxAvg(iplDataList);
+		}
 		default: {
 			System.out.println("Invalid choice!");
 			return null;

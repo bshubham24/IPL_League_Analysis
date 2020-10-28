@@ -129,7 +129,19 @@ public class DataSorter {
 		List<Bowling> sortedList = bowlList.stream().sorted(bowlAvgAndStrikeRate).collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
-		System.out.println(sortedRunsDataJson);
+		return sortedRunsDataJson;
+
+	}
+
+	public String highestWktsAndBestBowlingAvg(List<Bowling> bowlList) throws IplLeagueAnalyserException {
+		if (bowlList == null || bowlList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> highestWktsAndBestBowlAvg = Comparator
+				.comparing(bowl -> ((Bowling) bowl).getNoOfWickets())
+				.thenComparing(bowl -> ((Bowling) bowl).getAverage());
+		List<Bowling> sortedList = bowlList.stream().sorted(highestWktsAndBestBowlAvg).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		return sortedRunsDataJson;
 
 	}

@@ -69,4 +69,14 @@ public class IplLeagueAnalyserBowlingStatsTest {
 		Bowling[] bowlingCsv = new Gson().fromJson(sortedRunsData, Bowling[].class);
 		assertEquals("Krishnappa Gowtham", bowlingCsv[0].getPlayer());
 	}
+
+	@Test
+	public void givenBowlingStatsShouldReturnHighestWicketsAndAvgCricketer()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(bowlingStatsList,
+				"highestWktsAndBestBowlingAvg");
+		Bowling[] bowlingCsv = new Gson().fromJson(sortedRunsData, Bowling[].class);
+		assertEquals("Imran Tahir", bowlingCsv[0].getPlayer());
+	}
 }

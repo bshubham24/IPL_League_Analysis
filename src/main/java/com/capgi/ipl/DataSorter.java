@@ -121,4 +121,17 @@ public class DataSorter {
 
 	}
 
+	public String bestBowlingAvgAndStrikeRate(List<Bowling> bowlList) throws IplLeagueAnalyserException {
+		if (bowlList == null || bowlList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> bowlAvgAndStrikeRate = Comparator.comparing(bowl -> ((Bowling) bowl).getAverage())
+				.thenComparing(bowl -> ((Bowling) bowl).getStrikeRate());
+		List<Bowling> sortedList = bowlList.stream().sorted(bowlAvgAndStrikeRate).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		System.out.println(sortedRunsDataJson);
+		return sortedRunsDataJson;
+
+	}
+
 }

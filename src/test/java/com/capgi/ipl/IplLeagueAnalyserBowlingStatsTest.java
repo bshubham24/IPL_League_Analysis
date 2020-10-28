@@ -32,4 +32,12 @@ public class IplLeagueAnalyserBowlingStatsTest {
 		assertEquals("Krishnappa Gowtham", bowlingCsv[0].getPlayer());
 	}
 
+	@Test
+	public void givenBowlingStatsShouldReturnHighestBowlingStrikeRateCricketer()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(bowlingStatsList, "bestBowlingStrikeRate");
+		Bowling[] bowlingCsv = new Gson().fromJson(sortedRunsData, Bowling[].class);
+		assertEquals("Krishnappa Gowtham", bowlingCsv[0].getPlayer());
+	}
 }

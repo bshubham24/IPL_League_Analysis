@@ -87,4 +87,14 @@ public class IplLeagueAnalyserBattingStatsTest {
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("David Warner", battingCsv[0].getPlayer());
 	}
+
+	@Test
+	public void givenMostRunsDataShouldReturnBestAverageWithZeroHundredAndFiftyCricketer()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList,
+				"BestAvgWithoutZeroHundredAndFifty");
+		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
+		assertEquals("Marcus Stoinis", battingCsv[0].getPlayer());
+	}
 }

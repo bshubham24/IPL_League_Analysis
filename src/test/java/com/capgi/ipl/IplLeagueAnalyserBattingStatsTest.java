@@ -71,10 +71,19 @@ public class IplLeagueAnalyserBattingStatsTest {
 	}
 
 	@Test
-	public void givenMostRunsDataShouldReturnMaxRunsAndBestAverage()
+	public void givenMostRunsDataShouldReturnMaxRunsAndBestAverageCricketer()
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "MaxRunsAndMaxAvg");
+		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
+		assertEquals("David Warner", battingCsv[0].getPlayer());
+	}
+
+	@Test
+	public void givenMostRunsDataShouldReturnMaxHundredAndBestAverageCricketer()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(battingStatsList, "MaxHundredAndBestAvg");
 		Batting[] battingCsv = new Gson().fromJson(sortedRunsData, Batting[].class);
 		assertEquals("David Warner", battingCsv[0].getPlayer());
 	}

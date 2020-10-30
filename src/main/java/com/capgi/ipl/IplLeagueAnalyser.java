@@ -56,6 +56,10 @@ public class IplLeagueAnalyser {
 			iplDataList = AllRounderPlayers.getAllRounderPlayers();
 			return dataSorter.bestBowlingAndBattingAvgCricketer(iplDataList);
 		}
+		case "bestAllRounder": {
+			iplDataList = AllRounderPlayers.getAllRounderPlayers();
+			return dataSorter.bestAllRounder(iplDataList);
+		}
 		default: {
 			System.out.println("Invalid choice!");
 			return null;

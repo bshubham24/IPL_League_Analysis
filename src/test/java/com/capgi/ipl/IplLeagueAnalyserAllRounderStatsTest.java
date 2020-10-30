@@ -21,13 +21,22 @@ public class IplLeagueAnalyserAllRounderStatsTest {
 	}
 
 	@Test
-	public void givenMostRunsDataShouldReturnHighestBatAvgCricketer()
+	public void givenAllRounderDataShouldReturnBestBowlAndBatAvgCricketer()
 			throws IplLeagueAnalyserException, IOException, CsvException {
 
 		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(allRounderStatsList,
 				"bestBowlingAndBattingAvg");
 		AllRounder[] allRounderCsv = new Gson().fromJson(sortedRunsData, AllRounder[].class);
 		assertEquals("Krishnappa Gowtham", allRounderCsv[0].getPlayer());
+	}
+
+	@Test
+	public void givenMostRunsDataShouldReturnBestAllRounder()
+			throws IplLeagueAnalyserException, IOException, CsvException {
+
+		String sortedRunsData = iplLeagueAnalyser.sortIplDataBasedOnCategory(allRounderStatsList, "bestAllRounder");
+		AllRounder[] allRounderCsv = new Gson().fromJson(sortedRunsData, AllRounder[].class);
+		assertEquals("Andre Russell", allRounderCsv[0].getPlayer());
 	}
 
 }

@@ -84,7 +84,18 @@ public class DataSorter {
 		List<Batting> sortedList = runsList.stream().sorted(runsAndAvg).collect(Collectors.toList());
 		Collections.reverse(sortedList);
 		String sortedRunsDataJson = new Gson().toJson(sortedList);
-		System.out.println(sortedRunsDataJson);
+		return sortedRunsDataJson;
+	}
+
+	public String maxAvgWithoutHundredAndFifty(List<Batting> runsList) throws IplLeagueAnalyserException {
+		if (runsList == null || runsList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		final Comparator<Object> runsAndAvg = Comparator
+				.comparing(bat -> ((Batting) bat).getCentury() == 0 && ((Batting) bat).getHalfCentury() == 0)
+				.thenComparing(bat -> ((Batting) bat).getAverage());
+		List<Batting> sortedList = runsList.stream().sorted(runsAndAvg).collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
 		return sortedRunsDataJson;
 	}
 

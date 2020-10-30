@@ -37,6 +37,9 @@ public class IplLeagueAnalyser {
 		case "MaxHundredAndBestAvg": {
 			return dataSorter.maxHundredAndMaxAvg(iplDataList);
 		}
+		case "BestAvgWithoutZeroHundredAndFifty": {
+			return dataSorter.maxAvgWithoutHundredAndFifty(iplDataList);
+		}
 		case "maxBowlingAvg": {
 			return dataSorter.highestBowlingAvg(iplDataList);
 		}

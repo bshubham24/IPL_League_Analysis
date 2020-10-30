@@ -146,4 +146,15 @@ public class DataSorter {
 
 	}
 
+	public String bestBowlingAndBattingAvgCricketer(List<AllRounder> allRounderList) throws IplLeagueAnalyserException {
+		if (allRounderList.size() == 0)
+			throw new IplLeagueAnalyserException("No Code Data", ExceptionType.NO_DATA);
+		List<AllRounder> sortedList = allRounderList.stream()
+				.sorted(Comparator.comparing(player -> player.getAverageRuns() + player.getAverageWickets()))
+				.collect(Collectors.toList());
+		Collections.reverse(sortedList);
+		String sortedRunsDataJson = new Gson().toJson(sortedList);
+		return sortedRunsDataJson;
+	}
+
 }

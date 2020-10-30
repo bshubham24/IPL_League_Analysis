@@ -12,7 +12,8 @@ public class IplLeagueAnalyser {
 		return new CsvFileLoader().loadCsvData(csvFilePath, csvClass);
 	}
 
-	public String sortIplDataBasedOnCategory(List iplDataList, String category) throws IplLeagueAnalyserException {
+	public String sortIplDataBasedOnCategory(List iplDataList, String category)
+			throws IplLeagueAnalyserException, IOException, CsvException {
 		DataSorter dataSorter = new DataSorter();
 		switch (category) {
 		case "battingAvg": {
@@ -50,6 +51,10 @@ public class IplLeagueAnalyser {
 		}
 		case "highestWktsAndBestBowlingAvg": {
 			return dataSorter.highestWktsAndBestBowlingAvg(iplDataList);
+		}
+		case "bestBowlingAndBattingAvg": {
+			iplDataList = AllRounderPlayers.getAllRounderPlayers();
+			return dataSorter.bestBowlingAndBattingAvgCricketer(iplDataList);
 		}
 		default: {
 			System.out.println("Invalid choice!");
